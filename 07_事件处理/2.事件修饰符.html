@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <!--引入Vue-->
+        <script type="text/javascript" src="../js/vue.js"></script>
+        <style>
+            *{
+                margin-top: 20px;
+            }
+            .demo1{
+                height: 60px;
+                background-color: aquamarine;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- 
+				Vue中的事件修饰符：
+						1.prevent：阻止默认事件（常用）；
+						2.stop：阻止事件冒泡（常用）；
+						3.once：事件只触发一次（常用）；
+						4.capture：使用事件的捕获模式；
+						5.self：只有event.target是当前操作的元素时才触发事件；
+						6.passive：事件的默认行为立即执行，无需等待事件回调执行完毕；
+		-->
+        <div id="demo">
+            <h2>早上好，{{name}}</h2>
+            <!-- prevent：阻止默认事件 -->
+            <a href="http://purefast.net" v-on:click.prevent="prepareToFly">前往机场准备起飞</a>    <!-- .prevent:Vue中的事件修饰符  -->
+
+            <!-- stop：阻止事件冒泡 -->
+            <div class="demo1" v-on:click="prepareToFly">
+                <button v-on:click.stop="prepareToFly">点我提示信息</button>
+            </div>
+
+            <!-- once：事件只触发一次 -->
+            <button v-on:click.once="prepareToFly">点我提示信息</button>
+
+        </div>
+        <script type="text/javascript">
+            Vue.config.productionTip = false //阻止Vue在启动时生成生产提示
+            
+            new Vue({
+                el:'#demo',
+                data:{
+                    name:'陈祎赫'
+                },
+                methods:{
+                    prepareToFly(e){
+                        // e.preventDefault()   //阻止默认行为
+                        // e.stopPropagation()
+                        alert('芜湖起飞！')
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
