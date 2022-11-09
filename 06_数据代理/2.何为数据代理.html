@@ -8,24 +8,20 @@
     </head>
 
     <body>
-        
+        <script type="text/javascript">
+            let obj1 = {x:100}
+            let obj2 = {y:200}
+
+            Object.defineProperty(obj2,'x',{  //在obj2中添加一个名为x的属性，用obj2中的x代理obj1中的x
+                get(){
+                    return obj1.x
+                },
+
+                set(value){
+                    obj1.x = value
+                }
+            })
+        </script>
     </body>
-    <!--
-        
-    -->
-    <script type="text/javascript">
-        let obj = {x:100}
-        let obj2 = {y:200}
-
-        Object.defineProperty(obj2,'x',{
-            get(){
-                return obj.x
-            },
-
-            set(value){
-                obj.x = value
-            }
-        })
-
-    </script>
+    <!-- -->
 </html>
