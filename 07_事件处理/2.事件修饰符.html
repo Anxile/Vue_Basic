@@ -7,19 +7,18 @@
         <script type="text/javascript" src="../js/vue.js"></script>
         <style>
             *{
-                margin-top: 20px;
+                margin-top: 10px;
             }
             .demo1{
                 height: 60px;
                 background-color: aquamarine;
             }
             .capture1{
-                height: 90px;
+                padding: 5px;
                 background-color: rgb(40, 17, 167);
             }
             .capture2{
-                margin: 20px,20px,20px,20px;
-                height: 60px;
+                padding: 5px;
                 background-color: aquamarine;
             }
         </style>
@@ -43,6 +42,7 @@
             <!-- stop：阻止事件冒泡 -->
             <div class="demo1" v-on:click="prepareToFly">
                 <button v-on:click.stop="prepareToFly">点我提示信息</button>
+                <a href="http://purefast.net" @click.prevent.stop="prepareToFly">多个事件修饰符</a>
             </div>
 
             <!-- once：事件只触发一次 -->
