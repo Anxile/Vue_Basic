@@ -13,6 +13,15 @@
                 height: 60px;
                 background-color: aquamarine;
             }
+            .capture1{
+                height: 90px;
+                background-color: rgb(40, 17, 167);
+            }
+            .capture2{
+                margin: 20px,20px,20px,20px;
+                height: 60px;
+                background-color: aquamarine;
+            }
         </style>
     </head>
 
@@ -29,7 +38,7 @@
         <div id="demo">
             <h2>早上好，{{name}}</h2>
             <!-- prevent：阻止默认事件 -->
-            <a href="http://purefast.net" v-on:click.prevent="prepareToFly">前往机场准备起飞</a>    <!-- .prevent:Vue中的事件修饰符  -->
+            <a href="http://purefast.net" v-on:click="prepareToFly">前往机场准备起飞</a>    <!-- .prevent:Vue中的事件修饰符  -->
 
             <!-- stop：阻止事件冒泡 -->
             <div class="demo1" v-on:click="prepareToFly">
@@ -38,6 +47,13 @@
 
             <!-- once：事件只触发一次 -->
             <button v-on:click.once="prepareToFly">点我提示信息</button>
+
+            <!-- capture：使用事件的捕获模式 -->
+            <div class="capture1" @click.capture="capture1">
+                <div class="capture2">
+                    <button @click="capture2">点我点我</button>
+                </div>
+            </div>
 
         </div>
         <script type="text/javascript">
@@ -53,6 +69,12 @@
                         // e.preventDefault()   //阻止默认行为
                         // e.stopPropagation()
                         alert('芜湖起飞！')
+                    },
+                    capture1(){
+                        alert('第一次捕获')
+                    },
+                    capture2(){
+                        alert('第二次捕获')
                     }
                 }
             })
