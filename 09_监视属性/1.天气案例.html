@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>天气案例</title>
+        <!--引入Vue-->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="demo">
+            <h2>今天天气很{{weather}}</h2>
+            <!-- 绑定事件的时候：@xxx="yyy" yyy可以写一些简单的语句 -->
+            <button v-on:click="isHot = !isHot;this.alert('切换成功')">切换天气</button>
+
+            <button v-on:click="weatherChange;this.alert('切换成功')">切换天气</button> <!--这样就不会成功，为什么呢？？？？？？？？？-->
+
+            <button v-on:click="weatherChange">切换天气</button>
+
+        </div>
+        <script type="text/javascript">
+            Vue.config.productionTip = false //阻止Vue在启动时生成生产提示
+            
+            const vm = new Vue({
+                el:'#demo',
+                data:{
+                    isHot:true
+                },
+                methods: {
+                    weatherChange(){
+                        this.isHot = !this.isHot
+                    }
+                },
+                computed: {
+                    weather:function(){
+                        return this.isHot ? '炎热' : '凉爽'
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>
