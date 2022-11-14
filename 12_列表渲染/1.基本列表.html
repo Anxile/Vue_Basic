@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <!--引入Vue-->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="demo">
+            <!-- 遍历数组 -->
+            <h2>人员列表(遍历数组)</h2>
+            <ul>
+                <!-- <li v-for="(per,index) of persons" :key="index"></li> -->
+                <li v-for="per in persons" :key="per.id">
+                    {{per.name}}-{{per.age}}
+                </li>
+            </ul>
+
+            <!-- 遍历对象 -->
+            <h2>汽车信息(遍历对象)</h2>
+            <ul>
+                <!-- <li v-for="(per,index) in persons" :key="index"></li> -->
+                <li v-for="(value,k) in car" :key="k">
+                    {{k}}:{{value}}
+                </li>
+            </ul>
+
+            <!-- 遍历字符串 -->
+            <h2>hello</h2>
+            <ul>
+                <li v-for="(char,index) in char" :key="index">
+                    {{char}}:{{index}}
+                </li>
+            </ul>
+
+            <!-- 指定次数遍历 -->
+            <h2>指定次数遍历</h2>
+            <ul>
+                <li v-for="(number,index) in 5" :key="index">
+                    {{index}}:{{number}}
+                </li>
+            </ul>
+
+        </div>
+        <script type="text/javascript">
+            Vue.config.productionTip = false //阻止Vue在启动时生成生产提示
+            new Vue({
+                el:'#demo',
+                data:{
+                    persons:[
+                        {id:'001',name:'张三',age:13},
+                        {id:'002',name:'李四',age:14},
+                        {id:'003',name:'王五',age:15}
+                    ],
+                    car:{
+                        name:'ToTo',
+                        price:'300块',
+                        color:'白色'
+                    },
+                    char:'hello'
+                }
+            })
+        </script>
+    </body>
+</html>
