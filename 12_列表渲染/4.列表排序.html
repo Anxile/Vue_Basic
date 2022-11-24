@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <!--引入Vue-->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="demo">
+            <!-- 遍历数组 -->
+            <h2>人员列表(遍历数组)</h2>
+            <input type="text" placeholder="请输入名字" v-model="keyword">
+            <button @click="sortType = 2">年龄升序</button>
+            <button @click="sortType = 1">年龄降序</button>
+            <button @click="sortType = 0">原顺序</button>
+            <button @click.once="add()">添加一个人</button>
+            <ul>
+                <!-- <li v-for="(per,index) of persons" :key="index"></li> -->
+                <li v-for="per in filPersons" :key="per.id">
+                    {{per.name}}-{{per.age}}-{{per.sex}}
+                </li>
+            </ul>
+        </div>
+        <script type="text/javascript">
+            Vue.config.productionTip = false //阻止Vue在启动时生成生产提示
+            new Vue({
+                el:'#demo',
+                data:{
+                    keyword:'',
+                    sortType:'0',   //0 原顺序   1 降序     2 升序
+                    persons:[
+                        {id:'001',name:'马冬梅',age:13,sex:'女'},
+                        {id:'002',name:'周冬雨',age:14,sex:'女'},
+                        {id:'003',name:'周杰伦',age:15,sex:'男'},
+                        {id:'004',name:'温兆伦',age:18,sex:'男'}
+                    ],
+                    // filPersons:[],
+                },
+                methods: {
+                    add(){
+                        const p = {id:'004',name:'老刘',age:'30'}
+                        this.persons.unshift(p)
+                    }
+                },
+                //用watch实现
+                // watch: {
+                //     keyword:{
+                //         immediate:true,
+                //         handler(newword){
+                //             console.log('keyword发生了改变',newword)
+                //             this.filPersons = this.persons.filter((p)=>{
+                //                 return p.name.indexOf(newword) !== -1
+                //             })
+                //         }
+                //     }
+                // },
+
+                computed: {
+                    filPersons(){
+                        return this.persons.filter((p)=>{
+                            return p.name.indexOf(this.keyword) !== -1
+                        })
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>
