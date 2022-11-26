@@ -18,9 +18,13 @@
             <button @click.once="add()">添加一个人</button>
             <ul>
                 <!-- <li v-for="(per,index) of persons" :key="index"></li> -->
-                <li v-for="per in filPersons" :key="per.id">
+                <!-- <li v-for="per in filPersons" :key="per.id">
                     {{per.name}}-{{per.age}}-{{per.sex}}
-                </li>
+                </li> -->
+                <li v-for="(p,index) of filPersons" :key="p.id">
+					{{p.name}}-{{p.age}}-{{p.sex}}
+					<input type="text">
+				</li>
             </ul>
         </div>
         <script type="text/javascript">
@@ -29,12 +33,12 @@
                 el:'#demo',
                 data:{
                     keyword:'',
-                    sortType:'0',   //0 原顺序   1 降序     2 升序
+                    sortType:0,   //0 原顺序   1 降序     2 升序
                     persons:[
                         {id:'001',name:'马冬梅',age:13,sex:'女'},
-                        {id:'002',name:'周冬雨',age:14,sex:'女'},
-                        {id:'003',name:'周杰伦',age:15,sex:'男'},
-                        {id:'004',name:'温兆伦',age:18,sex:'男'}
+                        {id:'002',name:'周冬雨',age:21,sex:'女'},
+                        {id:'003',name:'周杰伦',age:8,sex:'男'},
+                        {id:'004',name:'温兆伦',age:34,sex:'男'}
                     ],
                     // filPersons:[],
                 },
@@ -59,9 +63,17 @@
 
                 computed: {
                     filPersons(){
-                        return this.persons.filter((p)=>{
+                        const arr = this.persons.filter((p)=>{
                             return p.name.indexOf(this.keyword) !== -1
                         })
+                        //判断一下是否需要排序
+                        if(this.sortType){
+                            console.log(this.sortType)
+                            arr.sort((p1,p2)=>{
+                                return this.sortType === 1 ? p2.age-p1.age : p1.age-p2.age
+                            })
+                        }
+                        return arr
                     }
                 },
             })

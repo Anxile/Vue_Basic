@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <!--引入Vue-->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="demo">
+            <!-- 遍历数组 -->
+            <h2>人员列表(遍历数组)</h2>
+            <button @click="updateMei">更新信息</button>
+            <ul>
+                <!-- <li v-for="(per,index) of persons" :key="index"></li> -->
+                <!-- <li v-for="per in filPersons" :key="per.id">
+                    {{per.name}}-{{per.age}}-{{per.sex}}
+                </li> -->
+                <li v-for="(p,index) of persons" :key="p.id">
+					{{p.name}}-{{p.age}}-{{p.sex}}
+				</li>
+            </ul>
+        </div>
+        <script type="text/javascript">
+            Vue.config.productionTip = false //阻止Vue在启动时生成生产提示
+            const vm = new Vue({
+                el:'#demo',
+                data:{
+                    persons:[
+                        {id:'001',name:'马冬梅',age:13,sex:'女'},
+                        {id:'002',name:'周冬雨',age:21,sex:'女'},
+                        {id:'003',name:'周杰伦',age:8,sex:'男'},
+                        {id:'004',name:'温兆伦',age:34,sex:'男'}
+                    ],
+                },
+                methods: {
+                    updateMei(){
+                        //this.persons[0].name = '马老师'       //奏效
+                        //this.persons[0].age = 65      //奏效
+                        //this.persons[0].sex = '男'        //奏效
+                        this.persons[0] = {id:'001',name:'马老师',age:65,sex:'男'}  //不奏效,Vue没有监测到更新
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>
