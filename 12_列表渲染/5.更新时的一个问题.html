@@ -8,6 +8,16 @@
     </head>
 
     <body>
+        <!-- 
+            Vue 将被侦听的数组的变更方法进行了包裹，所以它们也将会触发视图更新。这些被包裹过的方法包括：
+                push()
+                pop()
+                shift()
+                unshift()
+                splice()
+                sort()
+                reverse() 
+        -->
         <div id="demo">
             <!-- 遍历数组 -->
             <h2>人员列表(遍历数组)</h2>
@@ -40,6 +50,8 @@
                         //this.persons[0].age = 65      //奏效
                         //this.persons[0].sex = '男'        //奏效
                         this.persons[0] = {id:'001',name:'马老师',age:65,sex:'男'}  //不奏效,Vue没有监测到更新
+
+                        this.persons.splice(0,1,{id:'001',name:'马老师',age:65,sex:'男'})   //奏效，Vue能监测到数组的变更方法
                     }
                 },
             })
