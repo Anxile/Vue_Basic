@@ -8,6 +8,11 @@
 </head>
 
 <body>
+    <!-- 
+			v-once指令：
+						1.v-once所在节点在初次动态渲染后，就视为静态内容了。
+						2.以后数据的改变不会引起v-once所在结构的更新，可以用于优化性能。
+	-->
     <div id="demo">
         <button @click="count++">点我count+1</button>
         <h2>count的值为：{{count}}</h2>

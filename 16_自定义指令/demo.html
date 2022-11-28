@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        .demo {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">点我创建一个输入框</button>
+
+    <script type="text/javascript">
+        const btn = document.getElementById('btn')
+        btn.onclick = () => {
+            const input = document.createElement('input')
+
+            input.className = 'demo'                    //
+            input.value = 99                            //  元素绑定区（bind）
+            input.onclick = () => { alert(1) }          //
+
+            // input.parentElement.style.backgroundColor = 'skyblue'    //此时输入框还未被添加到页面，找不到父级元素会报错
+
+            document.body.appendChild(input)
+
+            input.focus()
+            // input.parentElement.style.backgroundColor = 'skyblue'
+            console.log(input.parentElement)
+
+        }
+    </script>
+</body>
+
+</html>
