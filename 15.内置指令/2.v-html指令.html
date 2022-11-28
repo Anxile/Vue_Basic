@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <!--引入Vue-->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="demo">
+        <div>你好，{{name}}</div>
+        <div v-html="str">qqq</div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止Vue在启动时生成生产提示
+
+    const vm = new Vue({
+        el: '#demo',
+        data: {
+            name: '啊哈哈',
+            str: '<h3>你好啊！</h3>'
+        }
+    })
+</script>
+
+</html>

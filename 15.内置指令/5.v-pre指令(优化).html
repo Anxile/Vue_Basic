@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="demo">
+        <h1>Vue真是666</h1>
+        <button @click="count++">点我count+1</button>
+        <h2>count的值为：{{count}}</h2>
+        <h2 v-once>初始化时count的值为：{{count}}</h2>
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    new Vue({
+        el:'#demo',
+        data:{
+            count:0,
+        }
+    })
+</script>
+
+</html>
