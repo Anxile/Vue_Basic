@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="demo">
+        <h2>当前的n值是：{{n}}</h2>
+        <button @click="add">点我n+1</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    new Vue({
+        el:'#demo',
+        data:{
+            n:1,
+        },
+        methods: {
+            add:function(){
+                this.n++
+            }
+        },
+        beforeCreate() {        //beforeCreate时。还没有进行数据代理
+            console.log('beforeCreate')
+            console.log(this)
+            //debugger;
+        },
+        created() {                // 
+            console.log('created')
+            console.log(this)
+            // debugger;
+        },
+        beforeMount() {
+            console.log('created')
+            console.log(this)
+            document.querySelector('h2').innerText='哈哈'       //对DOM的操作最终无效，因为后面Vue会把内存中的虚拟DOM转化为真实DOM插入页面
+            // debugger;
+        },
+        mounted() {
+            console.log('mounted')
+            console.log(this)
+            document.querySelector('h2').innerText=123
+            debugger;
+        },
+    })
+</script>
+
+</html>
