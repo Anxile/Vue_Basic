@@ -9,8 +9,10 @@
 
 <body>
     <div id="demo">
+        <h2 v-text="n"></h2>
         <h2>当前的n值是：{{n}}</h2>
         <button @click="add">点我n+1</button>
+        <button @click="bye">点我销毁Vue</button>
     </div>
 </body>
 
@@ -19,12 +21,28 @@
 
     new Vue({
         el:'#demo',
+        // template:`
+        //     <div>
+        //         <h2>当前的n值是：{{n}}</h2>
+        //         <button @click="add">点我n+1</button>
+        //     </div>    
+        // `,
         data:{
             n:1,
         },
         methods: {
             add:function(){
+                console.log('add')
                 this.n++
+            },
+            bye:function(){
+                console.log('bye')
+                this.$destroy()
+            }
+        },
+        watch:{
+            n(){
+                console.log('n变了')        //vue生命周期结束后，监视停止
             }
         },
         beforeCreate() {        //beforeCreate时。还没有进行数据代理
@@ -46,8 +64,32 @@
         mounted() {
             console.log('mounted')
             console.log(this)
-            document.querySelector('h2').innerText=123
-            debugger;
+            // document.querySelector('h2').innerText=123
+            // debugger;
+        },
+
+
+
+        beforeUpdate() {                                //
+            console.log('beforeUpdate')
+            // console.log(this.n)
+            // debugger
+        },                                              //          更新流程
+        updated() {
+            console.log('updated')
+            // console.log(this.n)
+            // debugger
+        },                                              //
+
+
+
+        beforeDestroy() {
+            console.log('beforeDestroy')
+            this.add()                                  //???????????这里控制台不输出log：“add”
+        },
+        destroyed() {
+            console.log('destroyed')
+
         },
     })
 </script>
