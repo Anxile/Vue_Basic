@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="demo"></div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    //定义student组件
+    const student = Vue.extend({
+        //定义组件在开发者工具中显示的名字
+        name:'student',
+        template:`
+            <div>
+                <h2>学生姓名：{{name}}</h2>
+                <h2>年龄：{{age}}</h2>
+            </div> 
+        `,
+        data() {
+            return {
+                name:'张三',
+                age:18
+            }
+        },
+    })
+
+
+    //定义school组件
+    const school = Vue.extend({
+        //定义组件在开发者工具中显示的名字
+        name:'ahahha',
+        template:`
+            <div>
+                <h2>学校名称：{{name}}</h2>
+                <h2>学校地址：{{address}}</h2>
+                <student></student>
+            </div> 
+        `,
+        data() {
+            return {
+                name:'硅谷',
+                address:'北平'
+            }
+        },
+        //注册子组件（局部）
+        components:{
+            student,
+        }
+    })
+
+    //定义一个hello组件
+    const hello = {
+        name:'hello',
+        template:`
+            <h1>{{msg}}</h1>
+        `,
+        data() {
+            return {
+                msg:'努力学Vue，打个翻身仗！'
+            }
+        },
+    }
+
+    //定义app组件
+    const app = {
+        template:`
+            <div>
+                <hello></hello>
+                <school></school>
+            </div>
+        `,
+        components:{
+            hello,
+            school
+        }
+    }
+
+    new Vue({
+        template:'<app></app>',
+        el:'#demo',
+        //注册组件（局部）
+        components:{app}
+    })
+</script>
+
+</html>
